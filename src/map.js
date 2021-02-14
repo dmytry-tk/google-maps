@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 import React, {useEffect, useState} from "react";
-import {getVideos} from "./servers/servers";
+const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 const { compose, withProps, withState, withHandlers } = require("recompose");
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
@@ -12,7 +12,6 @@ const {
     Marker
 } = require("react-google-maps");
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
-const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 const getPixelPositionOffset = (width, height) => ({
     x: -(width / 2),
@@ -27,7 +26,7 @@ export const Map = compose(
         mapElement: <div style={{ height: `100%` }} />,
         center: { lat: 25.03, lng: 121.6 },
     }),
-    withState('zoom', 'onZoomChange', 3),
+    withState('zoom', 'onZoomChange', 13),
     withHandlers(() => {
         const refs = {
             map: undefined,
@@ -54,13 +53,12 @@ export const Map = compose(
 export const CustomMap = (props) => {
     return (
         <GoogleMap
-            defaultCenter={{ lat: -77.03639984, lng: 38.89509964 }}
+            defaultCenter={{ lat: -33.91075134, lng: 151.19416809 }}
             zoom={props.zoom}
             options={{
                 minZoom: 2,
                 maxZoom: 18
             }}
-            maxZoom={5}
             ref={props.onMapMounted}
             onZoomChanged={props.onZoomChanged}>
             <MarkerClusterer
@@ -87,25 +85,40 @@ export const CustomMarker = ({marker}) => {
         scaledSize: new google.maps.Size(40, 40), // scaled size
         origin: new google.maps.Point(0, 0), // origin
     };
+
     return (
-        <MarkerWithLabel
-            icon={icon}
-            zIndex={10}
-            onMouseOut={() => setShowLabel(false)}
-            onMouseOver={() => setShowLabel(true)}
-            labelClass={`marker-label ${showLabel? "active" : ""}`}
-            position={{lat: +marker.lat, lng: +marker.lng}}
-            labelAnchor={new google.maps.Point(110, -10)}>
-            <div
-                className={`marker-label-content`}>
-                <div className="info-item"><div className="img"><img src={marker.UserPhoto} alt="user image"/></div></div>
-                <div className="info-item">Category: <span className="info-item-value">{marker.category}</span></div>
-                <div className="info-item">Likes: <span className="info-item-value">{marker.likes}</span></div>
-                <div className="info-item">Dislikes: <span className="info-item-value">{marker.dislikes}</span></div>
-                <div className="info-item">Link: <a className={"info-item-value"} href={marker.videoUrl}>{marker.videoUrl}</a></div>
-                <div className="info-item">Category: <span className="info-item-value">{marker.category}</span></div>
-            </div>
-        </MarkerWithLabel>
+        <>
+            <MarkerWithLabel
+                icon={icon}
+                zIndex={100}
+                onMouseOut={() => setShowLabel(false)}
+                onMouseOver={() => setShowLabel(true)}
+                defaultClickable={true}
+                onClick={(e) => e?.target?.href? window.open(e.target.href) : ""}
+                defaultDraggable={true}
+                clickable={true}
+                labelClass={`marker-label ${showLabel? "active" : ""}`}
+                position={{lat: +marker.lat, lng: +marker.lng}}
+                labelAnchor={new google.maps.Point(110, -10)}>
+                <div
+                    className={`marker-label-content`}>
+                    <div className="info-item"><div className="img"><img src={marker.UserPhoto} alt="user image"/></div></div>
+                    <div className="info-item">Category: <span className="info-item-value">{marker.category}</span></div>
+                    <div className="info-item">Likes: <span className="info-item-value">{marker.likes}</span></div>
+                    <div className="info-item">Dislikes: <span className="info-item-value">{marker.dislikes}</span></div>
+                    <div className="info-item">
+                        Link:
+                        <a
+                            href={marker.pageUrl}
+                            className={"info-item-value link"}>
+                            {marker.pageUrl}
+                        </a>
+                    </div>
+                    <div className="info-item">Views: <span className="info-item-value">{marker.views_count}</span></div>
+                    <div className="info-item">Created: <span className="info-item-value">{marker.createdHumanTiming}</span></div>
+                </div>
+            </MarkerWithLabel>
+        </>
     )
 }
 
