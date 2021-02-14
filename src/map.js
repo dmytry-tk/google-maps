@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 
 import React, {useEffect, useState} from "react";
-const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 const { compose, withProps, withState, withHandlers } = require("recompose");
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
@@ -63,7 +62,8 @@ export const CustomMap = (props) => {
             onZoomChanged={props.onZoomChanged}>
             <MarkerClusterer
                 averageCenter
-                enableRetinaIcons
+                clusterClass={"cluster-videos"}
+                // enableRetinaIcons
                 gridSize={60}>
                 {
                     props.videos.map((video, ind) => {
@@ -85,7 +85,6 @@ export const CustomMarker = ({marker}) => {
         scaledSize: new google.maps.Size(40, 40), // scaled size
         origin: new google.maps.Point(0, 0), // origin
     };
-
     return (
         <>
             <MarkerWithLabel
@@ -101,7 +100,7 @@ export const CustomMarker = ({marker}) => {
                 position={{lat: +marker.lat, lng: +marker.lng}}
                 labelAnchor={new google.maps.Point(110, -10)}>
                 <div
-                    className={`marker-label-content`}>
+                    className={`marker-label-content zF`}>
                     <div className="info-item"><div className="img"><img src={marker.UserPhoto} alt="user image"/></div></div>
                     <div className="info-item">Category: <span className="info-item-value">{marker.category}</span></div>
                     <div className="info-item">Likes: <span className="info-item-value">{marker.likes}</span></div>
