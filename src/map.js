@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
-const { compose, withProps, withState, withHandlers } = require("recompose");
+const { compose, withProps, withState, withHandlers, lifecycle } = require("recompose");
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 const {
     withScriptjs,
@@ -11,6 +11,8 @@ const {
     Marker
 } = require("react-google-maps");
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
+const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
+const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
 
 const getPixelPositionOffset = (width, height) => ({
     x: -(width / 2),
@@ -19,11 +21,10 @@ const getPixelPositionOffset = (width, height) => ({
 
 export const Map = compose(
     withProps({
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAWtOrr3OGWQ2i2IGWd3y8VnXRGmBvnUas",
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyA-gUZ12AVTL5DncTX_ilJAMhwCiocVvjg&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `80vh` }} />,
         mapElement: <div style={{ height: `100%` }} />,
-        center: { lat: 25.03, lng: 121.6 },
     }),
     withState('zoom', 'onZoomChange', 13),
     withHandlers(() => {
@@ -45,14 +46,42 @@ export const Map = compose(
             },
         }
     }),
+    lifecycle({
+        componentWillMount() {
+            const refs = {}
+
+            this.setState({
+                places: [],
+                onSearchBoxMounted: ref => {
+                    refs.searchBox = ref;
+                },
+                onPlacesChanged: () => {
+                    const places = refs.searchBox.getPlaces();
+                    console.log(refs.searchBox.getPlaces())
+                    this.setState({
+                        places,
+                    });
+                },
+            })
+        },
+    }),
     withScriptjs,
     withGoogleMap
 )(props => <CustomMap {...props}/>);
 
 export const CustomMap = (props) => {
+    const [center, setCenter] = useState({ lat: -33.91075134, lng: 151.19416809 })
+    const refSearch = useRef({getPlaces: () => {}})
+
+    const changeCenter = () => {
+        const lat = refSearch.current.getPlaces()[0].geometry.location.lat()
+        const lng = refSearch.current.getPlaces()[0].geometry.location.lng()
+        setCenter({lat, lng})
+    }
     return (
         <GoogleMap
             defaultCenter={{ lat: -33.91075134, lng: 151.19416809 }}
+            center={center}
             zoom={props.zoom}
             options={{
                 minZoom: 2,
@@ -60,6 +89,29 @@ export const CustomMap = (props) => {
             }}
             ref={props.onMapMounted}
             onZoomChanged={props.onZoomChanged}>
+            <div data-standalone-searchbox="">
+                <StandaloneSearchBox
+                    ref={ref => {props.onSearchBoxMounted(ref); refSearch.current = ref}}
+                    bounds={props.bounds}
+                    onPlacesChanged={changeCenter}>
+                    <input
+                        type="text"
+                        placeholder="Customized your placeholder"
+                        style={{
+                            boxSizing: `border-box`,
+                            border: `1px solid transparent`,
+                            width: `240px`,
+                            height: `32px`,
+                            padding: `0 12px`,
+                            borderRadius: `3px`,
+                            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+                            fontSize: `14px`,
+                            outline: `none`,
+                            textOverflow: `ellipses`,
+                        }}
+                    />
+                </StandaloneSearchBox>
+            </div>
             <MarkerClusterer
                 averageCenter
                 clusterClass={"cluster-videos"}
@@ -80,6 +132,7 @@ export const CustomMap = (props) => {
 export const CustomMarker = ({marker}) => {
 
     const [showLabel, setShowLabel] = useState(false);
+
     const icon = {
         url: marker.UserPhoto, // url
         scaledSize: new google.maps.Size(40, 40), // scaled size
@@ -93,7 +146,7 @@ export const CustomMarker = ({marker}) => {
                 onMouseOut={() => setShowLabel(false)}
                 onMouseOver={() => setShowLabel(true)}
                 defaultClickable={true}
-                onClick={(e) => e?.target?.href? window.open(e.target.href) : ""}
+                onClick={(ref) =>  console.log(ref)}
                 defaultDraggable={true}
                 clickable={true}
                 labelClass={`marker-label ${showLabel? "active" : ""}`}
@@ -119,78 +172,4 @@ export const CustomMarker = ({marker}) => {
             </MarkerWithLabel>
         </>
     )
-}
-
-
-// `https://gist.githubusercontent.com/farrrr/dfda7dd7fccfec5474d3/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`
-
-const data = {
-    "current": null,
-    "rowCount": null,
-    "total": 7,
-    "videos": [
-        {
-            "createdHumanTiming": "2 days",
-            "user": "admin",
-            "created": "2021-02-08 15:16:17",
-            "image": "https://api.social-media.in.ua/view/img/notfound.jpg",
-            "channelName": "support",
-            "first_name": null,
-            "last_name": null,
-            "description": "",
-            "views_count": 6,
-            "duration": "0:00:22",
-            "type": "video",
-            "lat": -77.03639984,
-            "lng": 38.89509964,
-            "category": "Default",
-            "likes": 0,
-            "dislikes": 0,
-            "pageUrl": "https://api.social-media.in.ua/video/nogpeajtottwumrc11mp4",
-            "videoUrl": "https://api.social-media.in.ua/videoEmbeded/nogpeajtottwumrc11mp4",
-            "UserPhoto": "https://api.social-media.in.ua/view/img/userSilhouette.jpg"
-        },
-        {
-            "createdHumanTiming": "2 days",
-            "user": "admin",
-            "created": "2021-02-08 15:16:17",
-            "image": "https://api.social-media.in.ua/view/img/notfound.jpg",
-            "channelName": "support",
-            "first_name": null,
-            "last_name": null,
-            "description": "",
-            "views_count": 6,
-            "duration": "0:00:22",
-            "type": "video",
-            "lat": 23.03639984,
-            "lng": 45.89509964,
-            "category": "Default",
-            "likes": 0,
-            "dislikes": 0,
-            "pageUrl": "https://api.social-media.in.ua/video/nogpeajtottwumrc11mp4",
-            "videoUrl": "https://api.social-media.in.ua/videoEmbeded/nogpeajtottwumrc11mp4",
-            "UserPhoto": "https://api.social-media.in.ua/view/img/userSilhouette.jpg"
-        },
-        {
-            "createdHumanTiming": "2 days",
-            "user": "admin",
-            "created": "2021-02-08 15:16:17",
-            "image": "https://api.social-media.in.ua/view/img/notfound.jpg",
-            "channelName": "support",
-            "first_name": null,
-            "last_name": null,
-            "description": "",
-            "views_count": 6,
-            "duration": "0:00:22",
-            "type": "video",
-            "lat": -1.03639984,
-            "lng": 33.89509964,
-            "category": "Default",
-            "likes": 0,
-            "dislikes": 0,
-            "pageUrl": "https://api.social-media.in.ua/video/nogpeajtottwumrc11mp4",
-            "videoUrl": "https://api.social-media.in.ua/videoEmbeded/nogpeajtottwumrc11mp4",
-            "UserPhoto": "https://api.social-media.in.ua/view/img/userSilhouette.jpg"
-        },
-    ]
 }
