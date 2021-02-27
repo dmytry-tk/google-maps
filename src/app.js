@@ -8,7 +8,7 @@ function App() {
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {
-        if(process.env.NODE_ENV === "development") return setVideos(data.videos);
+        // if(process.env.NODE_ENV === "development") return setVideos(data.videos);
         getVideos().then(({data}={}) => setVideos(data.videos))
     }, [])
 
