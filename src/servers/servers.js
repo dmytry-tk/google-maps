@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getVideos = async() => {
+export const getVideos = async(data=defaultCenter) => {
     let options = {
         method: "post",
         url: `https://api.social-media.in.ua/api/v1/getVideoByLocation.php `,
@@ -8,27 +8,25 @@ export const getVideos = async() => {
             "Content-Type": "application/json",
             "Authorization": "Bearer a22ade17030f9db1fe315d33f51bbb0d"
         },
-        data: {
-            "zoom": 4,
-            "center": {
-                "lat": -77.03639984,
-                "lng": 38.89509964
-            },
-            "visible_area": {
-                "Qa": {
-                    "i" : -180,
-                    "j" : -180
-                },
-                "Va": {
-                    "i" : -77.03639984,
-                    "j" : 38.89509964
-                }
-            }
-        }
+        data,
     };
     const res = await axios(options);
     return res
 };
+
+const defaultCenter = {
+    "zoom": 4,
+    "center": {
+        "lat": -77.03639984,
+        "lng": 38.89509964
+    },
+    "visible_area": {
+        east: 151.38488387979493,
+        north: -33.80019965154349,
+        south: -34.046054863759636,
+        west: 151.01066207803711,
+    }
+}
 
 
 const data = {

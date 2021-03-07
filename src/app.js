@@ -9,14 +9,18 @@ function App() {
 
     useEffect(() => {
         // if(process.env.NODE_ENV === "development") return setVideos(data.videos);
-        getVideos().then(({data}={}) => setVideos(data.videos))
+        fetchVideos()
     }, [])
+
+    const fetchVideos = (data) => {
+        getVideos(data).then(({data}={}) => setVideos(data.videos))
+    }
 
     if(!videos) return "";
 
     return (
         <div className="App">
-            <Map videos = {videos}/>
+            <Map videos = {videos} fetchVideos={fetchVideos}/>
         </div>
     );
 }

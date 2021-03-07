@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 
 const { compose, withProps, withState, withHandlers, lifecycle } = require("recompose");
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
@@ -8,16 +8,9 @@ const {
     withScriptjs,
     withGoogleMap,
     GoogleMap,
-    Marker
 } = require("react-google-maps");
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
-const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
-
-const getPixelPositionOffset = (width, height) => ({
-    x: -(width / 2),
-    y: -(height / 2),
-})
 
 export const Map = compose(
     withProps({
@@ -57,7 +50,6 @@ export const Map = compose(
                 },
                 onPlacesChanged: () => {
                     const places = refs.searchBox.getPlaces();
-                    console.log(refs.searchBox.getPlaces())
                     this.setState({
                         places,
                     });
@@ -72,12 +64,27 @@ export const Map = compose(
 export const CustomMap = (props) => {
     const [center, setCenter] = useState({ lat: -33.91075134, lng: 151.19416809 })
     const refSearch = useRef({getPlaces: () => {}})
+    const [refMap, setRefMap] = useState({})
+    const {fetchVideos} = props;
 
     const changeCenter = () => {
         const lat = refSearch.current.getPlaces()[0].geometry.location.lat()
         const lng = refSearch.current.getPlaces()[0].geometry.location.lng()
+        fetchVideos(getOptions())
         setCenter({lat, lng})
     }
+    const onZoomChanged = () => {
+        fetchVideos(getOptions())
+    }
+
+    const getOptions = () => {
+        const lat = refMap.getCenter().lat();
+        const lng = refMap.getCenter().lng();
+        const zoom = refMap.getZoom()
+        const visible_area = refMap.getBounds()
+        return {zoom, center:{lat, lng}, visible_area}
+    }
+
     return (
         <GoogleMap
             defaultCenter={{ lat: -33.91075134, lng: 151.19416809 }}
@@ -87,8 +94,8 @@ export const CustomMap = (props) => {
                 minZoom: 2,
                 maxZoom: 18
             }}
-            ref={props.onMapMounted}
-            onZoomChanged={props.onZoomChanged}>
+            ref={setRefMap}
+            onZoomChanged={onZoomChanged}>
             <div data-standalone-searchbox="">
                 <StandaloneSearchBox
                     ref={ref => {props.onSearchBoxMounted(ref); refSearch.current = ref}}
@@ -152,7 +159,6 @@ export const CustomMarker = ({marker}) => {
                 onMouseOut={() => setShowLabel(false)}
                 onMouseOver={() => setShowLabel(true)}
                 defaultClickable={true}
-                onClick={(ref) =>  console.log(ref)}
                 defaultDraggable={true}
                 clickable={true}
                 labelClass={`marker-label ${showLabel? "active" : ""}`}
