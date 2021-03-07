@@ -13,7 +13,8 @@
     <list default="true" id="3358527d-d476-4a90-9aab-aa5b682877a8" name="Default Changelist" comment="add styles">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/map.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +84,9 @@
       <workItem from="1613072048735" duration="96000" />
       <workItem from="1613202202757" duration="10180000" />
       <workItem from="1613297605446" duration="9951000" />
-      <workItem from="1614450500509" duration="5848000" />
+      <workItem from="1614450500509" duration="6010000" />
+      <workItem from="1614591207463" duration="88000" />
+      <workItem from="1615110136596" duration="522000" />
     </task>
     <task id="LOCAL-00001" summary="add styles">
       <created>1613318185642</created>
@@ -106,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614462643935</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add styles">
+      <created>1614462861219</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1614462861219</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,10 +171,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="634" y="231" key="RollbackChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1614462630488" />
-    <state x="440" y="249" key="Vcs.Push.Dialog.v2" timestamp="1614462645668">
+    <state x="440" y="249" key="Vcs.Push.Dialog.v2" timestamp="1614462862816">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="249" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1614462645668" />
+    <state x="440" y="249" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1614462862816" />
     <state x="541" y="280" width="597" height="490" key="find.popup" timestamp="1613317535199">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

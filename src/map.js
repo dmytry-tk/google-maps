@@ -23,7 +23,7 @@ export const Map = compose(
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyA-gUZ12AVTL5DncTX_ilJAMhwCiocVvjg&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `100%` }} />,
-        containerElement: <div style={{ height: `80vh` }} />,
+        containerElement: <div style={{ height: `100vh` }} />,
         mapElement: <div style={{ height: `100%` }} />,
     }),
     withState('zoom', 'onZoomChange', 13),
@@ -99,6 +99,12 @@ export const CustomMap = (props) => {
                         placeholder="Customized your placeholder"
                         style={{
                             boxSizing: `border-box`,
+                            position: `fixed`,
+                            zIndex: `100`,
+                            top: `0`,
+                            left: `50%`,
+                            margin: `10px`,
+                            transform: `translateX(-50%)`,
                             border: `1px solid transparent`,
                             width: `240px`,
                             height: `32px`,
