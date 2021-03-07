@@ -90,6 +90,7 @@ export const CustomMap = (props) => {
             defaultCenter={{ lat: -33.91075134, lng: 151.19416809 }}
             center={center}
             zoom={props.zoom}
+            onDragEnd={() => fetchVideos(getOptions())}
             options={{
                 minZoom: 2,
                 maxZoom: 18
