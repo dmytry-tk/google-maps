@@ -164,7 +164,7 @@ export const CustomMarker = ({marker}) => {
                 onMouseOut={() => setShowLabel(false)}
                 onMouseOver={() => setShowLabel(true)}
                 onClick={(e) => {
-                    if(e?.target?.attributes?.href) window.open("e?.target?.attributes?.href?.value", '_blank');
+                    if(e?.target?.attributes?.href) window.open(e?.target?.attributes?.href?.value, '_blank');
 
                 }}
                 defaultClickable={true}
