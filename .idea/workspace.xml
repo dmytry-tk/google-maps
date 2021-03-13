@@ -87,7 +87,7 @@
       <workItem from="1614591207463" duration="88000" />
       <workItem from="1615110136596" duration="5648000" />
       <workItem from="1615276966018" duration="165000" />
-      <workItem from="1615635870329" duration="3229000" />
+      <workItem from="1615635870329" duration="3726000" />
     </task>
     <task id="LOCAL-00001" summary="add styles">
       <created>1613318185642</created>
@@ -145,7 +145,28 @@
       <option name="project" value="LOCAL" />
       <updated>1615638935520</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add fixes for map">
+      <created>1615639600586</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1615639600586</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add fixes for map">
+      <created>1615639751313</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1615639751313</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add fixes for map">
+      <created>1615639948155</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1615639948155</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,10 +222,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="634" y="231" key="RollbackChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1614462630488" />
-    <state x="440" y="249" key="Vcs.Push.Dialog.v2" timestamp="1615638937382">
+    <state x="440" y="249" key="Vcs.Push.Dialog.v2" timestamp="1615639949630">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="249" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1615638937382" />
+    <state x="440" y="249" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1615639949630" />
     <state x="541" y="280" width="597" height="490" key="find.popup" timestamp="1615638902023">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

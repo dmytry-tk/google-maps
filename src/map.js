@@ -97,7 +97,7 @@ export const CustomMap = (props) => {
             onDragEnd={() => fetchVideos(getOptions())}
             options={{
                 minZoom: 2,
-                maxZoom: 18
+                maxZoom: 40
             }}
             ref={setRefMap}
             onZoomChanged={onZoomChanged}>
@@ -134,7 +134,7 @@ export const CustomMap = (props) => {
                 averageCenter
                 clusterClass={"cluster-videos"}
                 // enableRetinaIcons
-                gridSize={60}>
+                gridSize={100}>
                 {
                     props.videos.map((video, ind) => {
                         return (
