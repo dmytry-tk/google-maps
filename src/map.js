@@ -66,6 +66,7 @@ export const CustomMap = (props) => {
     const refSearch = useRef({getPlaces: () => {}})
     const [refMap, setRefMap] = useState({})
     const {fetchVideos} = props;
+    const [prevZoom, setPrevZoom] = useState(null)
 
     const changeCenter = () => {
         const lat = refSearch.current.getPlaces()[0].geometry.location.lat()
@@ -74,7 +75,10 @@ export const CustomMap = (props) => {
         setCenter({lat, lng})
     }
     const onZoomChanged = () => {
+        const z = refMap.getZoom()
+        if(prevZoom && prevZoom === z) return;
         fetchVideos(getOptions())
+        setPrevZoom(z)
     }
 
     const getOptions = () => {
