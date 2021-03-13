@@ -62,7 +62,7 @@ export const Map = compose(
 )(props => <CustomMap {...props}/>);
 
 export const CustomMap = (props) => {
-    const [center, setCenter] = useState({ lat: -33.91075134, lng: 151.19416809 })
+    const [center, setCenter] = useState({ lat: 49.98754883, lng: 36.36507797 })
     const refSearch = useRef({getPlaces: () => {}})
     const [refMap, setRefMap] = useState({})
     const {fetchVideos} = props;
