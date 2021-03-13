@@ -13,6 +13,7 @@
     <list default="true" id="3358527d-d476-4a90-9aab-aa5b682877a8" name="Default Changelist" comment="add styles">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/map.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +86,9 @@
       <workItem from="1613297605446" duration="9951000" />
       <workItem from="1614450500509" duration="6010000" />
       <workItem from="1614591207463" duration="88000" />
-      <workItem from="1615110136596" duration="5195000" />
+      <workItem from="1615110136596" duration="5648000" />
+      <workItem from="1615276966018" duration="165000" />
+      <workItem from="1615635870329" duration="2534000" />
     </task>
     <task id="LOCAL-00001" summary="add styles">
       <created>1613318185642</created>
@@ -129,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615115838930</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add styles">
+      <created>1615116018603</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1615116018603</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,14 +194,14 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="634" y="231" key="RollbackChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1614462630488" />
-    <state x="440" y="249" key="Vcs.Push.Dialog.v2" timestamp="1615115841368">
+    <state x="440" y="249" key="Vcs.Push.Dialog.v2" timestamp="1615116020566">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="249" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1615115841368" />
-    <state x="541" y="280" width="597" height="490" key="find.popup" timestamp="1615115831433">
+    <state x="440" y="249" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1615116020566" />
+    <state x="541" y="280" width="597" height="490" key="find.popup" timestamp="1615637850343">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="541" y="280" width="597" height="490" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1615115831433" />
+    <state x="541" y="280" width="597" height="490" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1615637850343" />
     <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1613240743393">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

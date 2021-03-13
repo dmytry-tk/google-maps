@@ -14,12 +14,12 @@ const { StandaloneSearchBox } = require("react-google-maps/lib/components/places
 
 export const Map = compose(
     withProps({
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyA-gUZ12AVTL5DncTX_ilJAMhwCiocVvjg&v=3.exp&libraries=geometry,drawing,places",
+        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyA-gUZ12AVTL5DncTX_ilJAMhwCiocVvjg&v=3.exp&language=en&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `100vh` }} />,
         mapElement: <div style={{ height: `100%` }} />,
     }),
-    withState('zoom', 'onZoomChange', 13),
+    withState('zoom', 'onZoomChange', 4),
     withHandlers(() => {
         const refs = {
             map: undefined,
@@ -104,7 +104,7 @@ export const CustomMap = (props) => {
                     onPlacesChanged={changeCenter}>
                     <input
                         type="text"
-                        placeholder="Customized your placeholder"
+                        placeholder="Enter your search term"
                         style={{
                             boxSizing: `border-box`,
                             position: `fixed`,
@@ -159,6 +159,10 @@ export const CustomMarker = ({marker}) => {
                 zIndex={100}
                 onMouseOut={() => setShowLabel(false)}
                 onMouseOver={() => setShowLabel(true)}
+                onClick={(e) => {
+                    if(e?.target?.attributes?.href) window.open("e?.target?.attributes?.href?.value", '_blank');
+
+                }}
                 defaultClickable={true}
                 defaultDraggable={true}
                 clickable={true}
@@ -173,11 +177,11 @@ export const CustomMarker = ({marker}) => {
                     <div className="info-item">Dislikes: <span className="info-item-value">{marker.dislikes}</span></div>
                     <div className="info-item">
                         Link:
-                        <a
+                        <span
                             href={marker.pageUrl}
                             className={"info-item-value link"}>
-                            {marker.pageUrl}
-                        </a>
+                            Open Video
+                        </span>
                     </div>
                     <div className="info-item">Views: <span className="info-item-value">{marker.views_count}</span></div>
                     <div className="info-item">Created: <span className="info-item-value">{marker.createdHumanTiming}</span></div>
